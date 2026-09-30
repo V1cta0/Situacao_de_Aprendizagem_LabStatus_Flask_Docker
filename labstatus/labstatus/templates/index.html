@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LabStatus</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <header class="topo">
+    <h1>LabStatus</h1>
+    <p>Painel de status dos serviços dos laboratórios: veja rapidamente o que está disponível e o que está em manutenção.</p>
+  </header>
+
+  <main class="container">
+    <section class="grade">
+      {% for s in servicos %}
+      <article class="cartao {{ s.status }}">
+        <h2>{{ s.nome }}</h2>
+        <span class="selo {{ s.status }}">{{ rotulos[s.status] }}</span>
+        
+      </article>
+      {% endfor %}
+    </section>
+
+    <a class="botao" href="/api/status">Ver dados em JSON (/api/status)</a>
+  </main>
+
+  <footer class="rodape">LabStatus v1 · Protótipo Flask + Docker</footer>
+</body>
+</html>
